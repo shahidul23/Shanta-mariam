@@ -87,7 +87,7 @@ class ClientHandlingController extends Controller
             $data = User::where('id','=',Session::get('loginId'))->first();
         }
 
-        $info = DB::table('aygas')->select()
+        $info = DB::table('moriams')->select()
             ->where('date', '>=', $request->from_date)
             ->where('date', '<=', $request->to_date)->get();
         return view('CRM.table._client_list',compact('data','info'));    
