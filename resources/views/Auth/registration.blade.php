@@ -19,7 +19,7 @@
 	<div class="register-box">
 		<div class="card card-outline card-primary">
 			<div class="card-header text-center">
-				<a href="{{ url('/') }}" class="h1"><b>SHANTA MARIAM - </b>Panel</a>
+				<a href="{{ url('/dashboaed') }}" class="h1"><b>SHANTA MARIAM - </b>Panel</a>
 			</div>
 			<div class="card-body">
 				<p class="login-box-msg">Register a new membership</p>

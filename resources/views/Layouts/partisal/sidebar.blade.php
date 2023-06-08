@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 	<!-- Brand Logo -->
-	<a href="{{url('/')}}" class="brand-link">
+	<a href="{{url('/dashboaed')}}" class="brand-link">
     <img src="{{ asset('public/image/mariam.png') }}" alt="Shanta Mariam" class="brand-image img-circle elevation-3" style="opacity: .8">
 		<span class="brand-text font-weight center"><b>SHANTA MARIAM</b></span>
 	</a>

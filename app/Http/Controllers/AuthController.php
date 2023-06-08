@@ -24,7 +24,7 @@ class AuthController extends Controller
         if($data->is_admin == 1){
             return view('Auth.registration',compact('data'));
         }else{
-            return redirect('/');
+            return redirect('/dashboaed');
         }
         
     }
@@ -59,7 +59,7 @@ class AuthController extends Controller
         if ($user) {
             if(Hash::check($request->password, $user->password)){
                 $request->session()->put('loginId',$user->id);
-                return redirect('/');
+                return redirect('/dashboaed');
             }else{
                 return back()->with('error','Password not matches');
             }

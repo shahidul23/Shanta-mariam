@@ -18,11 +18,11 @@ use App\Http\Controllers\ClientHandlingController;
 Route::get('/C-N/{number}',[ClientHandlingController::class,'collerNumber']);
 Route::post('/in-bound-store',[ClientHandlingController::class,'InboundDataSubmit'])->name('inbound.store'); 
 
-Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('already_LoggedIn');
+Route::get('/',[AuthController::class,'login'])->name('login')->middleware('already_LoggedIn');
 Route::get('/registration',[AuthController::class,'registration'])->name('registration');
 Route::post('/user-register',[AuthController::class,'userRegister'])->name('user-register');
 Route::post('/user-login',[AuthController::class,'userLogin'])->name('user-login');
-Route::get('/',[AuthController::class,'dashboard'])->middleware('is_loggedIn');
+Route::get('/dashboaed',[AuthController::class,'dashboard'])->middleware('is_loggedIn');
 Route::get('/logout',[AuthController::class,'userLogout'])->name('user-logout')->middleware('is_loggedIn');
 Route::get('/user-list',[AuthController::class,'userList'])->name('user-list')->middleware('is_loggedIn');
 Route::get('/out-bound',[ClientHandlingController::class,'Outbound'])->name('outbound')->middleware('is_loggedIn');
