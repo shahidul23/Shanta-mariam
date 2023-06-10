@@ -32,6 +32,10 @@ class ClientHandlingController extends Controller
 
     }
     public function OutboundDataSubmit(Request $request){
+        $user = array();
+        if (Session::has('loginId')) {
+            $user = User::where('id','=',Session::get('loginId'))->first();
+        }
         $request->validate([
             'phone' => 'required|max:11|min:7',
             'name' => 'required|max:100',
@@ -44,6 +48,8 @@ class ClientHandlingController extends Controller
         $data['Program'] = $request->program;
         $data['remark'] = $request->remarks;
         $data['call_type'] = $request->Outbound;
+        $data['agent_name'] = $user->name;
+        $data['agent_id'] = $user->id;
         $result = DB::table('moriams')->insert($data);
         if ($result) {
             return redirect()->route('client.list')->with('success','Student details save successfully');
@@ -52,6 +58,10 @@ class ClientHandlingController extends Controller
         }
     }
     public function InboundDataSubmit(Request $request){
+        $user = array();
+        if (Session::has('loginId')) {
+            $user = User::where('id','=',Session::get('loginId'))->first();
+        }
         $request->validate([
             'phone' => 'required|max:11|min:7',
             'name' => 'required|max:100',
@@ -64,7 +74,8 @@ class ClientHandlingController extends Controller
         $data['Program'] = $request->program;
         $data['remark'] = $request->remarks;
         $data['call_type'] = $request->Inbound;
-
+        $data['agent_name'] = $user->name;
+        $data['agent_id'] = $user->id;
         $result = DB::table('moriams')->insert($data);
         if ($result) {
             return redirect()->route('client.list')->with('success','Student details save successfully');
@@ -78,8 +89,13 @@ class ClientHandlingController extends Controller
         if (Session::has('loginId')) {
             $data = User::where('id','=',Session::get('loginId'))->first();
         }
-        $info = DB::table('moriams')->orderBy('id', 'DESC')->get();
-        return view('CRM.table._client_list',compact('data','info'));
+        if ($data->is_admin==1) {
+            $info = DB::table('moriams')->orderBy('id', 'DESC')->get();
+            return view('CRM.table._client_list',compact('data','info'));
+        }else{
+            $info = DB::table('moriams')->where('agent_id',$data->id)->orderBy('id', 'DESC')->get();
+            return view('CRM.table._client_list',compact('data','info'));
+        }
     }
     public function searchClientList(Request $request){
         $data = array();
@@ -88,8 +104,8 @@ class ClientHandlingController extends Controller
         }
 
         $info = DB::table('moriams')->select()
-            ->where('date', '>=', $request->from_date)
-            ->where('date', '<=', $request->to_date)->get();
+        ->where('date', '>=', $request->from_date)
+        ->where('date', '<=', $request->to_date)->get();
         return view('CRM.table._client_list',compact('data','info'));    
 
     }

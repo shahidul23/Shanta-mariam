@@ -59,6 +59,9 @@
 										<th>Email</th>
 										<th>Program</th>
 										<th>Remarks</th>
+										@if($data->is_admin == 1)
+										<th>Agent Name</th>
+										@endif
 									</tr>
 								</thead>
 								<tbody>
@@ -71,6 +74,9 @@
 										<td>{{ $row->email }}</td>
 										<td>{{ $row->Program }}</td>
 										<td>{{ $row->remark }}</td>
+										@if($data->is_admin == 1)
+										<td>{{ $row->agent_name }}</td>
+										@endif
 									</tr>
 									@endforeach
 								</tbody>

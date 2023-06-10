@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('Program');
             $table->string('call_type');
+            $table->string('agent_name');
+            $table->integer('agent_id');
             $table->text('remark')->nullable();
             $table->timestamps();
         });

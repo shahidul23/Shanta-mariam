@@ -24,7 +24,7 @@ class AuthController extends Controller
         if($data->is_admin == 1){
             return view('Auth.registration',compact('data'));
         }else{
-            return redirect('/dashboaed');
+            return redirect('/dashboard');
         }
         
     }
@@ -59,7 +59,7 @@ class AuthController extends Controller
         if ($user) {
             if(Hash::check($request->password, $user->password)){
                 $request->session()->put('loginId',$user->id);
-                return redirect('/dashboaed');
+                return redirect('/dashboard');
             }else{
                 return back()->with('error','Password not matches');
             }
@@ -71,7 +71,7 @@ class AuthController extends Controller
     public function userLogout(){
         if (Session::has('loginId')) {
             Session::pull('loginId');
-            return redirect('login');
+            return redirect('/');
         }
     }
     public function userList(){

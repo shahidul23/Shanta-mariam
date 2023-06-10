@@ -22,7 +22,7 @@ Route::get('/',[AuthController::class,'login'])->name('login')->middleware('alre
 Route::get('/registration',[AuthController::class,'registration'])->name('registration');
 Route::post('/user-register',[AuthController::class,'userRegister'])->name('user-register');
 Route::post('/user-login',[AuthController::class,'userLogin'])->name('user-login');
-Route::get('/dashboaed',[AuthController::class,'dashboard'])->middleware('is_loggedIn');
+Route::get('/dashboard',[AuthController::class,'dashboard'])->middleware('is_loggedIn');
 Route::get('/logout',[AuthController::class,'userLogout'])->name('user-logout')->middleware('is_loggedIn');
 Route::get('/user-list',[AuthController::class,'userList'])->name('user-list')->middleware('is_loggedIn');
 Route::get('/out-bound',[ClientHandlingController::class,'Outbound'])->name('outbound')->middleware('is_loggedIn');

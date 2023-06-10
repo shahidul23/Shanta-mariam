@@ -17,7 +17,7 @@ class addMember
     public function handle(Request $request, Closure $next): Response
     {
         if (!Session()->has('loginId') && (url('registration') == $request->url())) {
-            return redirect()->route('login');
+            return redirect('/');
         }
         return $next($request);
     }
